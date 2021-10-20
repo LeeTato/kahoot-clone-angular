@@ -1,0 +1,20 @@
+<p>lobby-page works!</p>
+<form>
+  <label>Display Nickname</label>
+  <input type="text" placeholder="Nickname" #name>
+  <br> <br>
+  <label>Game Pin</label>
+  <input type="text" placeholder="GamePin">
+  <br> <br>
+  <button (click)= 'addPlayer(name.value)'>Join</button>
+</form>
+
+<h2>List of players</h2>
+  <ul>
+    <li *ngFor='let player of players'>
+       {{player.name}}
+
+    </li>
+  </ul>
+<hr>
+<button (click)='goToQuiz()'>GoToQuiz</button>

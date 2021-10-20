@@ -1,0 +1,25 @@
+
+<p>question-board-page works!</p>
+<h2>Question List</h2>
+
+
+ <h2>{{question?.title}}</h2>
+<h3>{{question?.text}}</h3>
+<li *ngFor="let q of question?.answers">
+  <input type="radio"
+  value="{{q.text}}"
+   [(ngModel)]="answer"
+   />{{q.text}}
+
+</li>
+<br><br>
+<div><h3>Your answer:</h3>{{answer}}</div>
+
+
+
+
+
+
+
+
+
