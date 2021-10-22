@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { IPlayer } from '../../../../../shared/models/players.model'
+import { Questions } from '../../../../../shared/models/questions.model';
 
 @Component({
   selector: 'app-leader-board-page',
@@ -9,7 +10,10 @@ import { IPlayer } from '../../../../../shared/models/players.model'
 })
 export class LeaderBoardPageComponent implements OnInit {
   gamePlayer:[] | IPlayer[]= []
-  constructor(private socket:Socket) {}
+  question:null | Questions = null;
+  constructor(private socket:Socket) {
+  
+  }
 
 
   ngOnInit(): void {
@@ -19,8 +23,12 @@ export class LeaderBoardPageComponent implements OnInit {
       this.gamePlayer = gamePlayer} );
 
 
+
+
   }
 
-
+  goToNextQuestion(){
+    this.socket.emit('go-to-next-question')
+  }
 
 }

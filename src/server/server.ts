@@ -123,6 +123,13 @@ socket.on("answer-question",(answer)=>{
 	  })
 
 
+// Get next question 
+socket.on('go-to-next-question', ()=>{  
+	io.emit('route','question-page')
+})
+
+
+
 
 
 }); //This is the end

@@ -1,8 +1,11 @@
+<p>question-board-page</p>
+<div style=" background-color: green;
+width: 800px;
+height: 400px;
+margin: 40px;
+box-shadow: 4px 4px 4px black;">
 
-<p>question-board-page works!</p>
 <h2>Question List</h2>
-{{question | json}}
-
  <h2>{{question?.title}}</h2>
 <h3>{{question?.text}}</h3>
 <li *ngFor="let q of question?.answers">
@@ -14,9 +17,11 @@
 </li>
 <br><br>
 <div><h3>Your answer:</h3>{{answer}}</div>
-<br><br><br>
-
-<button (click)='answerQuestion()'>GoToLeaderBoard</button>
+<br>
+</div>
+<button (click)='answerQuestion()' style=" background-color: #008CBA;padding: 16px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 30px;
+margin: 4px 2px;
+cursor: pointer">SUBMIT ANSWER</button>
 
 
 

@@ -1,12 +1,18 @@
 <p>quizzes works!</p>
+<div style="padding-left: 20%;">
+<div style=" background-color: gold;
+width: 800px;
+height: 400px;
+margin: 40px;
+box-shadow: 4px 4px 4px black;">
 <h1>List-of-Quizzes</h1>
 
 <li *ngFor="let quizz of quizzes">
 
   <button (click)='selectQuiz(quizz)'>{{quizz.title}}</button>
  </li>
-
-
+</div>
+</div>
 
 
 
