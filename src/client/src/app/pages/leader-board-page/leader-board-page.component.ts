@@ -8,7 +8,7 @@ import { IPlayer } from '../../../../../shared/models/players.model'
   styleUrls: ['./leader-board-page.component.scss']
 })
 export class LeaderBoardPageComponent implements OnInit {
-  gamePlayer:null | IPlayer = null
+  gamePlayer:[] | IPlayer[]= []
   constructor(private socket:Socket) {}
 
 
@@ -16,7 +16,7 @@ export class LeaderBoardPageComponent implements OnInit {
     this.socket.emit('request-gamePlayers')
     this.socket.on('allPlayer-data',(gamePlayer:any)=>{
       console.log(gamePlayer)
-      this.gamePlayer = gamePlayer;} )
+      this.gamePlayer = gamePlayer} );
 
 
   }

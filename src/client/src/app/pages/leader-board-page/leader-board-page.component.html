@@ -2,10 +2,16 @@
 
  {{gamePlayer | json}}
 
- <br>
 
-{{gamePlayer?.name}}
-{{gamePlayer?.points}}
+ <br>
+   <li *ngFor="let g of gamePlayer">
+     {{g.name}} {{g.points}}
+   </li>
+
+
+
+
+
 
 
 
