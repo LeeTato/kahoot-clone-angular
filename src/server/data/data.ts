@@ -43,6 +43,11 @@ export function removePlayer(socketId:string){
    console.log(game);
 }
 
+export function getPlayers(){
+    return game.players
+}
+
+
 function findBySocket(socketId:string) {
     return game.players.find(player => player.socketId === socketId)
 }
@@ -55,12 +60,10 @@ export function addName(name:string, socketId:string) {
     const player= findBySocket(socketId);
     if(player){
         player.name = name;
+
        }
        return player;
 }
-
-
-
 
 
 
@@ -71,39 +74,35 @@ export function getQuestion() {
   
  
  
-//  function findCorrect() {
-//     return getQuestion()?.answers.find(answer => answer.correct)
-//  }
+ function findCorrect() {
+    return getQuestion()?.answers.find(answer => answer.correct)
+ }
 
-//  function hasEveryoneAnswered() {
-//     return game.players.every(player => player.answers)
-// }
+ export function hasEveryoneAnswered() {
+    return game.players.every(player => player.answer)
+}
 
-// export function answerQuestion(socketId:string, answer:string) {
-//     const user =findBySocket(socketId)
-//     if(user){
-//        user.answers=answer
-//     }
-   
-//     if (hasEveryoneAnswered()) {
-//         game.players.forEach(player => {
-//             console.log(getQuestion());
-//             const correct = player.answers === findCorrect()?.text;
-//             if (!player.points) {
-//                 player.points = 0;
-//             }
-//             if (correct) {
-//                 player.points += 1;
-//             }
-//             player.answers = null;
-//         });
-//         // getQuestion()?.completed = true;
-//         console.log('socket.emit', 'leader board')
-//     }
-//  }
-
-
-
+export function answerQuestion(socketId:string, answer:string) {
+    const user =findBySocket(socketId)
+    if(user){
+       user.answer=answer
+    if (hasEveryoneAnswered()) {
+        game.players.forEach(player => {
+            const correct = player.answer === findCorrect()?.text;
+            if (!player.points) {
+                player.points = 0;
+            }
+            if (correct) {
+                player.points += 1;
+            }
+            player.answer = null;
+        });
+        const question = getQuestion();
+        if(question){question.completed=true}
+       return true
+    }
+}
+ }
 
 
 // function getPhase(){

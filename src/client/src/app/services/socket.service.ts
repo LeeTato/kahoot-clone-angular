@@ -12,6 +12,7 @@ export class SocketService {
   public quizzes: any[] = [];
   public players: any[] = [];
   public questions: any[] = [];
+  public data:any[]=[];
   constructor(private socket: Socket, private router: Router) {
     this.socket.on('connect', () => {});
     this.router.navigate(['/']);
@@ -32,9 +33,15 @@ export class SocketService {
     );
     this.socket.on('add name', (players: any) => (this.players = players));
     this.socket.on('player added name',(players:any)=>{this.players=players});
+
+  
+
   }
+
   selectQuiz(quizz: any) {
     this.socket.emit('select quiz', quizz);
   }
+
+
 
 }

@@ -6,9 +6,11 @@ import { Server, Socket } from "socket.io";
 import type {Player } from "../shared/models/players.model.js";
 import type { Quiz } from "../shared/models/quizzes.model.js";
 import type { Questions } from "../shared/models/questions.model.js";
-import { addName, addPlayer, game, getQuestion, removePlayer, selectQuiz } from "./data/data.js";
+import { addName, addPlayer, answerQuestion, game, getPlayers, getQuestion, hasEveryoneAnswered, removePlayer, selectQuiz } from "./data/data.js";
 import { QuizzModel } from "./schemas/quizzes.schema.js";
 import { QuestionsModel } from "./schemas/questions.schemas.js";
+import { PlayerModel } from "./schemas/players.schema.js"
+
 
 
 const app = express();
@@ -35,6 +37,8 @@ app.get("/", (req, res) => {
 const players: Player[] = [];
 const Quizzes: Quiz[] = [];
 const question: Questions[] = [];
+
+
 
 io.on("connection", (socket) => {
 	socket.on("disconnect", () => {
@@ -65,9 +69,10 @@ io.on("connection", (socket) => {
  
  })
 
+
  //Add Name
  socket.on("add name", (name) => {
-    addName(name, socket.id)
+   name = addName(name, socket.id)
 	console.log(game);
  io.emit("player added name", game.players);
  })
@@ -99,15 +104,23 @@ socket.emit("data-question", question)
 
   })
 
-// //Ask If Everyone Answer 
-// socket.on("everyone-answered",()=>{
-// // const answered = answerQuestion(socket.id, answers)
-// 	console.log(answered)
-// 	io.emit('route','leader-board')	
-	
-// } )  
+
+//check for the answer
+socket.on("answer-question",(answer)=>{
+   if(answer){
+	const allAnswer = answerQuestion( socket.id, answer)
+	if(allAnswer){
+		io.emit('route','leader-board')
+	}
+}})
 
 
+ //get players
+ socket.on("request-gamePlayers", ()=>{
+	const allPlayers = getPlayers()
+	socket.emit("allPlayer-data", allPlayers)
+	 console.log(allPlayers)
+	  })
 
 
 
