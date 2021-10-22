@@ -5,11 +5,19 @@ width: 800px;
 height: 400px;
 margin: 40px;
 box-shadow: 4px 4px 4px black;">
-<h1>List-of-Quizzes</h1>
+<h1 style=" text-align: center;">List-of-Quizzes</h1>
 
 <li *ngFor="let quizz of quizzes">
 
-  <button (click)='selectQuiz(quizz)'>{{quizz.title}}</button>
+  <button (click)='selectQuiz(quizz)' style="  border: none;
+  background-color: #4CAF50;
+  padding: 16px 150px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  margin: 4px 2px;
+  cursor: pointer">{{quizz.title}}</button>
  </li>
 </div>
 </div>

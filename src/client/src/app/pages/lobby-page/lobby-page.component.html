@@ -1,22 +1,22 @@
 <p>lobby-page works!</p>
-<div style="padding-left: 20%; ">
+<div style="padding-left: 20%;">
   <div style=" background-color: red;
   width: 800px;
   height: 400px;
   margin: 40px;
   box-shadow: 4px 4px 4px black;">
-    <h1 style="color:black">Kahoot-Game</h1>
+    <h1 style="color:black;  text-align: center;">Kahoot-Game</h1>
 
   <form>
-  <label>Display Nickname</label>
+  <label style=" font-size: 30px; ">Display Nickname</label>
   <input type="text" placeholder="Nickname" #name>
   <br> <br>
-  <label>Game Pin</label>
+  <label style=" font-size: 30px;">Game Pin</label>
   <input type="text" placeholder="GamePin">
   <br> <br>
   <button (click)= 'addPlayer(name.value)' style="  border: none;
   background-color: #4CAF50;
-  padding: 16px 32px;
+  padding: 16px 100px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -25,7 +25,7 @@
   cursor: pointer">Join</button>
 </form>
 
-<h1 style="color:black">List of players</h1>
+<h1 style="color:black;  text-align: center;">List of players</h1>
   <ul>
     <li *ngFor='let player of players'>
        {{player.name}}
@@ -33,8 +33,8 @@
     </li>
   </ul>
 <hr>
-<button (click)='goToQuiz()' style=" background-color: #008CBA;padding: 16px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 30px;
+<button (click)='goToQuiz()' style=" background-color:  #4CAF50;;padding: 16px 265px;text-align: center;text-decoration: none;display: inline-block;font-size: 30px;
 margin: 4px 2px;
-cursor: pointer">GoToQuizPage</button>
+cursor: pointer">GoToQuestionPage</button>
 </div>
 </div>

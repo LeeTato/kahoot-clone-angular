@@ -39,7 +39,7 @@ const Quizzes: Quiz[] = [];
 const question: Questions[] = [];
 
 
-
+//Connect Socket.io and Add players
 io.on("connection", (socket) => {
 	socket.on("disconnect", () => {
 		removePlayer(socket.id);
@@ -52,6 +52,7 @@ io.on("connection", (socket) => {
 		socket.emit("route", "lobby");
 	}
 
+
 	//Get Quizzes
 	socket.on("get quizzes", () => {
 		QuizzModel.find().then((data) => {
@@ -59,6 +60,8 @@ io.on("connection", (socket) => {
 		});
 	});
    
+
+
  //Select Quiz
  socket.on('select quiz', (quizz:Quiz)=>{
 	 QuestionsModel.find({quizId:quizz.quizId}).then((questions)=>{
@@ -70,6 +73,7 @@ io.on("connection", (socket) => {
  })
 
 
+
  //Add Name
  socket.on("add name", (name) => {
    name = addName(name, socket.id)
@@ -78,11 +82,13 @@ io.on("connection", (socket) => {
  })
  
  
+
+
  //Host Add name
   socket.on("add name",(name)=>{
 	  if(player.host){
 		addName(name, socket.id)
-	console.log(game);
+	//console.log(game);
 	socket.emit("route", "lobby");
     io.emit("player added name", game.players);  
 
@@ -90,12 +96,13 @@ io.on("connection", (socket) => {
   } )
 
 
-// Take all players to Quiz
 
+// Take all players to Quiz
 socket.on('go-to-quiz', ()=>{
 	io.emit('route','question-page')
-  //console.log("GAME:", game)
+
 })
+
 
  //Request Question
 socket.on("request-question", ()=>{
@@ -103,6 +110,7 @@ const question = getQuestion()
 socket.emit("data-question", question)
 
   })
+
 
 
 //check for the answer
@@ -115,7 +123,7 @@ socket.on("answer-question",(answer)=>{
 }})
 
 
- //get players
+ //get players with points
  socket.on("request-gamePlayers", ()=>{
 	const allPlayers = getPlayers()
 	socket.emit("allPlayer-data", allPlayers)
@@ -123,7 +131,7 @@ socket.on("answer-question",(answer)=>{
 	  })
 
 
-// Get next question 
+// Go to next question 
 socket.on('go-to-next-question', ()=>{  
 	io.emit('route','question-page')
 })

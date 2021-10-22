@@ -27,25 +27,26 @@ export const game: Game = {
 
 
 export function addPlayer(player:IPlayer){
-    console.log(game.players);
+   // console.log(game.players);
     game.players.push(player)
     if(!findHost()){
         player.host=true;
     }
     return player;
 }
+
 export function findHost(){
    return game.players.find(player=>player.host)
 }
+
+
 export function removePlayer(socketId:string){
    const player = findBySocket(socketId);
    game.players=game.players.filter(p=>p.socketId!==player?.socketId) 
    console.log(game);
 }
 
-export function getPlayers(){
-    return game.players
-}
+
 
 
 function findBySocket(socketId:string) {
@@ -54,8 +55,9 @@ function findBySocket(socketId:string) {
 
 export function selectQuiz(quiz:any) {
     game.quiz = quiz;
-    console.log(game.quiz)
+    //console.log(game.quiz)
 }
+
 export function addName(name:string, socketId:string) {
     const player= findBySocket(socketId);
     if(player){
@@ -104,6 +106,9 @@ export function answerQuestion(socketId:string, answer:string) {
 }
  }
 
+ export function getPlayers(){
+    return game.players
+}
 
 // function getPhase(){
 //    return game.phases[game.phaseIndex];

@@ -27,14 +27,12 @@ export class SocketService {
     this.socket.on('Send quizzes', (quizzes: any) => (this.quizzes = quizzes));
     this.socket.emit('get quizzes');
 
-    this.socket.on(
-      'players-ready',
-      (username: string) => (this.username = username)
-    );
+    // this.socket.on('players-ready',(username: string) => (this.username = username));
+
     this.socket.on('add name', (players: any) => (this.players = players));
     this.socket.on('player added name',(players:any)=>{this.players=players});
 
-  
+
 
   }
 
