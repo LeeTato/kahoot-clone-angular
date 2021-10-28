@@ -6,10 +6,17 @@ import { Server, Socket } from "socket.io";
 import type {Player } from "../shared/models/players.model.js";
 import type { Quiz } from "../shared/models/quizzes.model.js";
 import type { Questions } from "../shared/models/questions.model.js";
-import { addName, addPlayer, answerQuestion, game, getPlayers, getQuestion, hasEveryoneAnswered, removePlayer, selectQuiz } from "./data/data.js";
+import { addName, addPlayer, answerQuestion, game, getPlayers, getQuestion, removePlayer, selectQuiz } from "./data/data.js";
 import { QuizzModel } from "./schemas/quizzes.schema.js";
 import { QuestionsModel } from "./schemas/questions.schemas.js";
 import { PlayerModel } from "./schemas/players.schema.js"
+import path from 'path';
+
+
+import dotenv from 'dotenv';
+dotenv.config();
+
+
 
 
 
@@ -23,16 +30,30 @@ app.use(cors());
 app.use(express.static("public"));
 
 mongoose
-	.connect("mongodb://localhost:27017/kahoot")
+	.connect(`${process.env.MONGO_URI}`)
+	
 	.then(() => {
 		console.log("Connected to DB Successfully");
 	})
 	.catch((err) => console.log("Failed to Connect to DB", err));
 
 //**********************************************************************
-app.get("/", (req, res) => {
-	res.sendFile(__dirname + "public/index.html");
-});
+
+const __dirname = path.resolve();
+
+const clientPath = path.join(__dirname, '/dist/client');
+app.use(express.static(clientPath));
+
+
+app.get("/", function (req, res) {
+	const filePath = path.join(__dirname, '/dist/client/index.html');
+	console.log(filePath);
+	res.sendFile(filePath);
+  });
+
+
+
+  
 
 const players: Player[] = [];
 const Quizzes: Quiz[] = [];

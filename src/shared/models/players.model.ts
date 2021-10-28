@@ -7,6 +7,7 @@ export interface Player{
     socketId:string,
    
 }
+
 export interface IPlayer{
     socketId: string;
     name?:string;
