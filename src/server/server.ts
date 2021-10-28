@@ -21,7 +21,7 @@ dotenv.config();
 
 
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 const server = http.createServer(app);
 
 let io = new Server(server, { cors: { origin: "http://localhost:4200" } });
@@ -163,7 +163,7 @@ socket.on('go-to-next-question', ()=>{
 
 }); //This is the end
 
-server.listen(port, () => {
-	console.log("listening on http://localhost:" + port);
+server.listen(PORT, () => {
+	console.log("listening on http://localhost:" + PORT);
 });
 // })
