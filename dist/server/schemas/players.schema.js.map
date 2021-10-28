@@ -1,0 +1,1 @@
+{"version":3,"file":"players.schema.js","sourceRoot":"","sources":["../../../src/server/schemas/players.schema.ts"],"names":[],"mappings":"AAAA,OAAO,QAAQ,MAAM,UAAU,CAAC;AAEhC,MAAM,EAAC,MAAM,EAAE,KAAK,EAAC,GAAG,QAAQ,CAAA;AAEhC,MAAM,YAAY,GAAG,IAAI,MAAM,CAAS;IACpC,QAAQ,EAAE,MAAM;IAChB,QAAQ,EAAG,MAAM;CAEpB,CAAC,CAAA;AACF,MAAM,CAAC,MAAM,WAAW,GAAG,KAAK,CAAS,QAAQ,EAAC,YAAY,CAAC,CAAA"}

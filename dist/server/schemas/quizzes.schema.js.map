@@ -1,0 +1,1 @@
+{"version":3,"file":"quizzes.schema.js","sourceRoot":"","sources":["../../../src/server/schemas/quizzes.schema.ts"],"names":[],"mappings":"AAAA,OAAO,QAAQ,MAAM,UAAU,CAAC;AAEhC,MAAM,EAAC,MAAM,EAAE,KAAK,EAAC,GAAG,QAAQ,CAAA;AAEhC,MAAM,aAAa,GAAG,IAAI,MAAM,CAAO;IACjC,MAAM,EAAE,MAAM;IACd,KAAK,EAAC,MAAM;CAEjB,CAAC,CAAA;AAEF,MAAM,CAAC,MAAM,UAAU,GAAG,KAAK,CAAO,SAAS,EAAE,aAAa,CAAC,CAAA"}
