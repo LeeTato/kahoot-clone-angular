@@ -24,7 +24,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const server = http.createServer(app);
 
-let io = new Server(server, { cors: { origin: "http://localhost:4200" } });
+export let io = new Server(server, {
+	cors: { origin: ["http://localhost:4200"] },
+  });
+  
 
 app.use(cors());
 app.use(express.static("public"));

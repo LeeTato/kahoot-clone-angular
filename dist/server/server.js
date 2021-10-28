@@ -11,9 +11,11 @@ import path from 'path';
 import dotenv from 'dotenv';
 dotenv.config();
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 const server = http.createServer(app);
-let io = new Server(server, { cors: { origin: "http://localhost:4200" } });
+export let io = new Server(server, {
+    cors: { origin: ["http://localhost:4200"] },
+});
 app.use(cors());
 app.use(express.static("public"));
 mongoose
@@ -22,11 +24,12 @@ mongoose
     console.log("Connected to DB Successfully");
 })
     .catch((err) => console.log("Failed to Connect to DB", err));
+console.log(process.env.MONGO_URI);
 //**********************************************************************
 const __dirname = path.resolve();
 const clientPath = path.join(__dirname, '/dist/client');
 app.use(express.static(clientPath));
-app.get("/", function (req, res) {
+app.get("*", function (req, res) {
     const filePath = path.join(__dirname, '/dist/client/index.html');
     console.log(filePath);
     res.sendFile(filePath);
@@ -105,8 +108,8 @@ io.on("connection", (socket) => {
         io.emit('route', 'question-page');
     });
 }); //This is the end
-server.listen(port, () => {
-    console.log("listening on http://localhost:" + port);
+server.listen(PORT, () => {
+    console.log("listening on http://localhost:" + PORT);
 });
 // })
 //# sourceMappingURL=server.js.map
