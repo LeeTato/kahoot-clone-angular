@@ -45,7 +45,7 @@ const clientPath = path.join(__dirname, '/dist/client');
 app.use(express.static(clientPath));
 
 
-app.get("/", function (req, res) {
+app.get("*", function (req, res) {
 	const filePath = path.join(__dirname, '/dist/client/index.html');
 	console.log(filePath);
 	res.sendFile(filePath);
