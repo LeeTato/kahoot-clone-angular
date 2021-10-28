@@ -37,12 +37,16 @@ mongoose
 	})
 	.catch((err) => console.log("Failed to Connect to DB", err));
 
+
+	console.log(process.env.MONGO_URI)
+
 //**********************************************************************
 
 const __dirname = path.resolve();
 
 const clientPath = path.join(__dirname, '/dist/client');
 app.use(express.static(clientPath));
+
 
 
 app.get("*", function (req, res) {
