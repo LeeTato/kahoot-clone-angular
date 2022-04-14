@@ -15,6 +15,7 @@ export class SocketService {
   public data:any[]=[];
   constructor(private socket: Socket, private router: Router) {
     this.socket.on('connect', () => {});
+    //this is set up for routing from back end 
     this.router.navigate(['/']);
     this.socket.on('not unique nickName', (message: string) => {
       this.message = message;
@@ -31,8 +32,6 @@ export class SocketService {
 
     this.socket.on('add name', (players: any) => (this.players = players));
     this.socket.on('player added name',(players:any)=>{this.players=players});
-
-
 
   }
 
